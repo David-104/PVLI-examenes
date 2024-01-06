@@ -51,10 +51,38 @@
          "imageheight":8,
          "imagewidth":24,
          "margin":0,
-         "name":"ground_ts",
+         "name":"suelo",
          "spacing":0,
          "tilecount":3,
          "tileheight":8,
+         "tiles":[
+                {
+                 "id":0,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":1,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }, 
+                {
+                 "id":2,
+                 "properties":[
+                        {
+                         "name":"collides",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
          "tilewidth":8,
          "transparentcolor":"#000000"
         }],

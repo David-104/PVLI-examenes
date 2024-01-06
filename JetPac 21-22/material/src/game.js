@@ -12,8 +12,11 @@ window.onload = ()=>{
         },
         pixelArt: true,
         physics: {
-            gravity: {y: 480}, 
-            debug: true
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 480 },
+                debug: true
+            }
         },
         scene: [MainMenu, PlayScene]
     };

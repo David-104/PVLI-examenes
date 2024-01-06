@@ -10,12 +10,12 @@ export default class MainMenu extends Phaser.Scene {
 	}
 	
 	create (){
-		let botonF = new Button(this, 128, 54, "Facil", { "ClickCallback": () => this.changeScene(2, 2)})
-		let botonI = new Button(this, 128, 108, "Intermedio", { "ClickCallback": () => this.changeScene(3, 1)})
-		let botonD= new Button(this, 128, 162, "Dificil", { "ClickCallback": () => this.changeScene(5, 0.5)})
+		let botonF = new Button(this, 128, 54, "Facil", { "ClickCallback": () => this.startGame(2, 2)})
+		let botonI = new Button(this, 128, 108, "Intermedio", { "ClickCallback": () => this.startGame(3, 1)})
+		let botonD= new Button(this, 128, 162, "Dificil", { "ClickCallback": () => this.startGame(5, 0.5)})
 	}
 
-	changeScene(fuelNum, spawnTime){
+	startGame(fuelNum, spawnTime){
 		this.scene.start('play', {fuelNum, spawnTime})
 	}
   }
