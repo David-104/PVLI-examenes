@@ -4,9 +4,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.scene.add.existing(this);
         this.scene.physics.world.enable(this);
 
+        //this.setDepth(5); profundidad, valor mas alto mas delante
         this.playerOffset = { x: 0, y: 0 };
         this.isDead = false;
-
+        this.carryingFuel = false;
         // Ajustar el tamaño del cuerpo de físicas para que coincida con el sprite visual
         this.body.setSize(17, 24);
         this.body.setOffset(this.playerOffset.x, this.playerOffset.y);
@@ -15,6 +16,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.w = this.scene.input.keyboard.addKey('W');
         this.a = this.scene.input.keyboard.addKey('A');
         this.d = this.scene.input.keyboard.addKey('D');
+
+        //tambien se puede meter un on objeto:
+        /*        
+        this.cursors = scene.input.keyboard.addKeys({
+            up: Phaser.Input.Keyboard.KeyCodes.W,
+            left: Phaser.Input.Keyboard.KeyCodes.A,
+            right: Phaser.Input.Keyboard.KeyCodes.D
+        });
+         */
+        //p ej: se accede con: this.cursors.left.isDown 
     }
 
     preUpdate(t, dt){
@@ -47,7 +58,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
         if(this.w.isDown){
             this.setVelocityY(-100)
-            this.anims.play('flyingPlayer');
+            this.anims.play('flyingPlayer', true);
         }
 
         //toroidal
@@ -55,5 +66,15 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
             this.x = 256;
         else if(this.x > 256)
             this.x = 0;
+
+        if(this.carryingFuel){
+            this.auxFuel.x = this.x;
+            this.auxFuel.y = this.y - 10;
+        }
+    }
+
+    carryFuel(){
+        this.carryingFuel = true;
+        this.auxFuel = this.scene.add.sprite(this.x, this.y - 10, "fuel");
     }
 }
