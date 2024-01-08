@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Conceptos básicos de diagramas de clase en UML</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Conceptos%20b%C3%A1sicos%20de%20diagramas%20de%20clase%20en%20UML_files/reset.css">
+  <link rel="stylesheet" href="Conceptos%20b%C3%A1sicos%20de%20diagramas%20de%20clase%20en%20UML_files/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Conceptos%20b%C3%A1sicos%20de%20diagramas%20de%20clase%20en%20UML_files/beige.css" id="theme">
+  <link rel="stylesheet" href="Conceptos%20b%C3%A1sicos%20de%20diagramas%20de%20clase%20en%20UML_files/juegosweb.css">
+</head>
+<body style="transition: transform 0.8s ease 0s; --slide-width: 960px; --slide-height: 700px;" class="reveal-viewport">
+  <div class="reveal slide center focused has-vertical-slides has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade">
+    <div class="slides" style="width: 960px; height: 700px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(1.01349);">
+
+<section id="title-slide" style="top: 265.5px; display: block;" class="present">
+  <h1 class="title">Conceptos básicos de diagramas de clase en UML</h1>
+</section>
+
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="sistemas-complejos" class="title-slide slide level1" style="top: 307.5px; display: block;">
+<h1>Sistemas complejos</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 278px; display: block;">
+
+<p>Un sistema software puede tener muchos, muchos módulos</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Trabajar con todas las piezas a la vez puede ser inviable</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Dividir, encapsular y ordenar las piezas es fundamental</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Además, es importante <strong>recordar</strong> y <strong>comunicar</strong> la estructura software que estamos utilizando</p>
+</section></section>
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="uml" class="title-slide slide level1" style="top: 307.5px; display: block;">
+<h1>UML</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>UML (<em>Unified Modeling Languge</em>) es un lenguaje <strong>visual</strong> que sirve para representar un diseño software</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>UML se usa como el “plano” software</p>
+<p>Todos los miembros del equipo deberían seguir este plano</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Se usa para dar una visión abstracta de una arquitectura software, en particular, de arquitecturas <em>orientadas a objetos</em></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<blockquote>
+<p>UML no es un lenguaje de programación, es un lenguaje de modelado</p>
+</blockquote>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="tipos-de-diagramas-uml" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Tipos de diagramas UML</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>No hay un diagrama UML, hay muchos (secuencia, casos de uso, de actividades…)</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Nosotros vamos a centrarnos en uno de los tipos más comunes: <em>el diagrama de clases UML</em></p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="diagramas-de-clase-uml" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Diagramas de clase UML</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Una clase se representa con una caja, con su nombre en la primera sección:</p>
+<figure>
+<img data-src="frutas.pu.svg" alt="Ejemplo de clases"><figcaption aria-hidden="true">Ejemplo de clases</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Las clases pueden tener atributos, que se representan en la segunda sección:</p>
+<figure>
+<img data-src="atributos.pu.svg" alt="Atributos"><figcaption aria-hidden="true">Atributos</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>También pueden representarse los métodos, en la tercera sección:</p>
+<figure>
+<img data-src="metodos.pu.svg" alt="Métodos"><figcaption aria-hidden="true">Métodos</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>La idea, en un diagrama, es que se vean representadas todas las clases relevantes:</p>
+<figure>
+<img data-src="muchos.pu.svg" alt="Varias clases UML"><figcaption aria-hidden="true">Varias clases UML</figcaption>
+</figure>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="relaciones" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Relaciones</h1>
+
+</section>
+<section id="herencia" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Herencia</h2>
+<p>Una de las relaciones más usadas en la programación orientada a objetos es la herencia</p>
+<p>En UML, la herencia se representa con una flecha <em>hueca</em>, <strong>desde el hijo hasta el padre</strong></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="herenciafrutas.pu.svg" alt="Herencia"><figcaption aria-hidden="true">Herencia</figcaption>
+</figure>
+</section>
+<section id="implementación" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Implementación</h2>
+<p>Se puede reflejar la idea de implementación de una interfaz</p>
+<p>Una interfaz es un conjunto de funciones no implementadas que 
+representan un comportamiento que puede ser especificado en cada clase</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="interface.pu.svg" alt="Interfaces"><figcaption aria-hidden="true">Interfaces</figcaption>
+</figure>
+</section>
+<section id="agregación" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Agregación</h2>
+<p>La agregación es un tipo de relación en la que hay un contenedor y un contenido</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="agregacionuml.pu.svg" alt="Agregación"><figcaption aria-hidden="true">Agregación</figcaption>
+</figure>
+</section>
+<section id="composición" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Composición</h2>
+<p>La composición es más “fuerte” que la agregación</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En la composición, el todo y las partes tienen el mismo ciclo de vida</p>
+<p>Es decir, no hay todo sin las partes</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="composicionuml.pu.svg" alt="Composición"><figcaption aria-hidden="true">Composición</figcaption>
+</figure>
+</section>
+<section id="asociación" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Asociación</h2>
+<p>Es una relación estructural que describe una conexión entre objetos de esas clases</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<ul>
+<li>Pueden ser bidireccionales o unidireccionales</li>
+<li>En este último caso, una flecha indica qué clase hace uso de la otra</li>
+</ul>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="asociacion.pu.svg" alt="Asociación"><figcaption aria-hidden="true">Asociación</figcaption>
+</figure>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="más" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Más…</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>UML es mucho, mucho más complejo, y se puede usar para representar mucho más que una estructura de clases</p>
+<p>Hay <a href="https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/">muchos recursos en Internet</a> a través de los cuales podéis aprender más detalles</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>También os recomendamos que useis aplicaciones que facilitan el desarrollo de los diagramas UML:</p>
+<ul>
+<li><a href="https://app.diagrams.net/">draw.io</a></li>
+<li><a href="https://online.visual-paradigm.com/diagrams.jsp">Visual Paradigm online</a></li>
+<li><a href="https://yuml.me/diagram/scruffy/class/draw">Yuml</a></li>
+</ul>
+</section></section>
+    </div>
+  <div class="backgrounds"><div class="slide-background present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div></div><div class="slide-number" style="display: block;"><a href="#/title-slide">
+					<span class="slide-number-a">1</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right enabled highlight" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Conceptos básicos de diagramas de clase en UML </div></div>
+
+  <script src="Conceptos%20b%C3%A1sicos%20de%20diagramas%20de%20clase%20en%20UML_files/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="Conceptos%20b%C3%A1sicos%20de%20diagramas%20de%20clase%20en%20UML_files/notes.js"></script>
+  <script src="Conceptos%20b%C3%A1sicos%20de%20diagramas%20de%20clase%20en%20UML_files/search.js"></script>
+  <script src="Conceptos%20b%C3%A1sicos%20de%20diagramas%20de%20clase%20en%20UML_files/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: false,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+</body></html>

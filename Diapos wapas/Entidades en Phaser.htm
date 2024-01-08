@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Entidades en Phaser</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Entidades%20en%20Phaser_files/reset.css">
+  <link rel="stylesheet" href="Entidades%20en%20Phaser_files/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Entidades%20en%20Phaser_files/beige.css" id="theme">
+  <link rel="stylesheet" href="Entidades%20en%20Phaser_files/juegosweb.css">
+</head>
+<body style="transition: transform 0.8s ease 0s; --slide-width: 960px; --slide-height: 700px; --slide-scale: 1.0134857142857143;" class="reveal-viewport">
+  <div class="reveal slide center focused has-vertical-slides has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade">
+    <div class="slides" style="width: 960px; height: 700px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(1.01349);">
+
+<section id="title-slide" style="top: 307.5px; display: block;" class="present">
+  <h1 class="title">Entidades en Phaser</h1>
+</section>
+
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="gameobject" class="title-slide slide level1" style="top: 308px; display: block;">
+<h1><code class="sourceCode javascript">GameObject</code></h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 303px; display: block;">
+
+<p><a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.GameObject"><code class="sourceCode javascript">GameObject</code></a> es la entidad básica
+de Phaser.</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Tienen una referencia a la escena a la que pertenece (<code class="sourceCode javascript">scene</code>)</p>
+<p>Tienen un método para activar/desactivar los gameobject (<code class="sourceCode javascript"><span class="fu">setActive</span>(value)</code>)</p>
+<p>Tienen métodos para suscribirnos (<code class="sourceCode javascript"><span class="fu">on</span>()</code>) y
+desengancharnos de eventos (<code class="sourceCode javascript"><span class="fu">off</span>()</code>)</p>
+<p>Pueden convertirse en objetos interactuables (<code class="sourceCode javascript"><span class="fu">setInteractive</span>(value)</code>)</p>
+<p>(… y otros muchos métodos)</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>No crearemos objetos de este tipo pero muchas de las entidades de
+Phaser heredan de <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.GameObject"><code class="sourceCode javascript">GameObject</code></a></p>
+<p>A continuación veremos algunas de las entidades más importantes de
+Phaser</p>
+</section></section>
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="entidades-image" class="title-slide slide level1" style="top: 307.5px; display: block;">
+<h1>Entidades <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Image"><code class="sourceCode javascript">Image</code></a></h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Las imágenes son las entidades visibles más simples de Phaser. Las
+entidades son instancias de la clase <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Image"><code>Image</code></a></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Su simplicidad las hace ligeras y eficientes en términos de
+memoria</p>
+<p>Utilizamos imágenes cuando no necesitamos comportamientos complejos
+como físicas o animaciones por <em>keyframes</em></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Aun así, las imágenes se pueden mover, rotar, escalar, invertir
+(<em>flip</em>) o recortar</p>
+<p>Esto las hace ideales para, por ejemplo, logos, imágenes de fondo,
+barras de carga, elementos de interfaz…</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Una imagen se crea a través del método factoría <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.GameObjectFactory"><code class="sourceCode javascript">add<span class="op">.</span><span class="at">image</span></code></a>
+del objeto <code class="sourceCode javascript">Scene</code></p>
+<p>Por ejemplo, como parte de la creación de una escena en el método
+<code class="sourceCode javascript">create</code></p>
+</section>
+<section id="atributos-relevantes-de-las-imágenes" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Atributos relevantes de las imágenes</h2>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En Phaser, el origen de coordenadas (0,0) está en la esquina superior
+izquierda</p>
+<p>Las imágenes tienen por defecto el punto de origen (o pivote) en el
+centro de la imagen</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img alt="Sistema de coordenadas en Phaser" src="Entidades%20en%20Phaser_files/phaser_coordinates.png" data-lazy-loaded="">
+<figcaption aria-hidden="true">Sistema de coordenadas en
+Phaser</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Las imágenes renderizan texturas de acuerdo a su posición (x,y) y
+pivote.</p>
+<p>Podemos cambiar su posición con <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Image#setPosition"><code class="sourceCode javascript">setPosition</code></a></p>
+<p>Podemos cambiar el pivote de la imagen con <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Image#setOrigin"><code class="sourceCode javascript">setOrigin</code></a> (en [0,1])</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>También se puede elegir el <em>blending</em> con
+<code>blendMode</code></p>
+<p>Se puede cambiar su transparencia con <code>alpha</code></p>
+<p>Se puede cambiar su profundidad o <em>z-index</em> con
+<code>depth</code></p>
+<p>(¡mirad el API!)</p>
+</section>
+<section id="métodos-relevantes-de-las-imágenes" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Métodos relevantes de las imágenes</h2>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Una imagen puede ser “recortada” con <code>setCrop</code>, de forma
+que sólo se vea un trozo de la misma</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// this es una Scene</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">this</span><span class="op">.</span><span class="at">image</span> <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">image</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="st">'phaser'</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">this</span><span class="op">.</span><span class="at">image</span><span class="op">.</span><span class="fu">setCrop</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Cuando la imagen se recorta, realmente no se pierde información</p>
+<p>De hecho, el recorte se puede cambiar dinámicamente:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// this es una Scene</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">update</span>() {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">v</span> <span class="op">+=</span> <span class="fl">0.1</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">image</span><span class="op">.</span><span class="fu">setCrop</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">v</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">v</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<ul>
+<li>Podemos invertir las imágenes con los métodos <code>setFlip</code>,
+<code>setFlipX</code>, <code>Set FlipY</code></li>
+<li>Podemos cambiar el orden de dibujado con <code>setDepth</code></li>
+<li>…</li>
+</ul>
+<p>(Nuevamente, mirad la API)</p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="la-escena-scene" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>La escena (<a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Scene"><code class="sourceCode javascript">Scene</code></a>)</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Podemos crear nuestras propias escenas heredando de la clase <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Scene"><code class="sourceCode javascript">Scene</code></a>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="im">default</span> <span class="kw">class</span> Menu <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">Scene</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">constructor</span>() {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Nombre de la escena para el SceneManager</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span>({ <span class="dt">key</span><span class="op">:</span> <span class="st">'menu-principal'</span> })<span class="op">;</span> </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Métodos init, preload, create, update</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}  </span></code></pre></div>
+</section>
+<section id="añadir-entidades-a-la-escena" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Añadir entidades a la escena</h2>
+<p>En Phaser, la factoría de objetos se llama añadir (<code class="sourceCode javascript">add</code>) por una razón: <strong>porque
+añadimos las nuevas entidades a la escena</strong></p>
+<p>Para Phaser, la escena, representado por la clase <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Scene"><code>Scene</code></a>,
+es la <strong>abstracción del lugar (un plano bidimensional) donde
+habitan las entidades</strong></p>
+</section>
+<section id="cámara" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Cámara</h2>
+<figure>
+<img data-src="world.svg" style="width:50.0%" alt="La escena, la cámara y entidades más allá de los límites de la cámara">
+<figcaption aria-hidden="true">La escena, la cámara y entidades más allá
+de los límites de la cámara</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Miramos al mundo a través de <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Cameras.Scene2D.Camera">cámaras</a></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="world-and-camera.svg" style="width:50.0%" alt="El mundo, la cámara y entidades más allá de los límites de la cámara">
+<figcaption aria-hidden="true">El mundo, la cámara y entidades más allá
+de los límites de la cámara</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Al iniciar, se crea una cámara, a la que podemos acceder a través del
+atributo <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Scene#cameras"><code class="sourceCode javascript">cameras<span class="op">.</span><span class="at">main</span></code></a>
+de la escena:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// en el método create, donde this es una Scene</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> card <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">sprite</span>(<span class="dv">200</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="st">'card'</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">this</span><span class="op">.</span><span class="at">cameras</span><span class="op">.</span><span class="at">main</span><span class="op">.</span><span class="fu">startFollow</span>(card)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Podemos cambiar el <em>viewport</em> de la cámara con <code class="sourceCode javascript">setViewport</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// this es una Scene</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">this</span><span class="op">.</span><span class="at">cameras</span><span class="op">.</span><span class="at">main</span><span class="op">.</span><span class="fu">setViewport</span>(<span class="dv">200</span><span class="op">,</span> <span class="dv">150</span><span class="op">,</span> <span class="dv">400</span><span class="op">,</span> <span class="dv">300</span>)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Las cámaras tienen otros muchos métodos y funciones <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Cameras.Scene2D.Camera">que
+se pueden consultar en su API</a>.</p>
+</section>
+<section id="cambio-de-escenas" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Cambio de escenas</h2>
+<p>Para cambiar entre escenas utilizamos el <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Scenes.ScenePlugin"><code>SceneManager</code></a>,
+accesible desde el atributo <code>scene</code>:</p>
+<ul>
+<li>Con <code>this.scene.start('siguiente_escena')</code> cambiamos de
+escena.</li>
+<li><code>sleep</code> pone en pausa (y no renderiza) una escena</li>
+<li><code>restart</code> reinicia una escena</li>
+<li>…</li>
+</ul>
+</section>
+<section id="pasar-contenido-entre-escenas" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Pasar contenido entre escenas</h2>
+<p>Es posible (y normal) querer pasar contenido de una escena a otra
+(variables “globales” del juego, estado del jugador…)</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Para eso, podemos pasarle un objeto JavaScript a la escena que
+iniciamos:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">this</span><span class="op">.</span><span class="at">scene</span><span class="op">.</span><span class="fu">start</span>(<span class="st">'siguiente_escena'</span><span class="op">,</span> { <span class="dt">monedas</span><span class="op">:</span> <span class="dv">9</span> })</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Este objeto le llegará a la siguiente escena a través del método
+<code class="sourceCode javascript">init</code>, al que Phaser llama
+automáticamente antes de los métodos <code class="sourceCode javascript">preload</code> y <code class="sourceCode javascript">create</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SiguienteEscena <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">Scene</span> {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">init</span>(datos) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">monedas</span> <span class="op">=</span> datos<span class="op">.</span><span class="at">monedas</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">create</span>() {</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">player</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">Player</span>(<span class="kw">this</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">monedas</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="entidades-sprite" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Entidades <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Sprite"><code>Sprite</code></a></h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>La mayoría de las entidades visibles de un juego incorporan alguna
+animación y comportamiento</p>
+<p>La clase <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Sprite"><code class="sourceCode javascript">Sprite</code></a> representa estas
+“entidades animadas” y es el componente principal de los juegos con
+Phaser</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Aunque podamos añadir <em>sprites</em> al mundo utilizando el método
+factoría <code class="sourceCode javascript">add<span class="op">.</span><span class="at">sprite</span></code>,
+el sprite por defecto es tan simple que no se suele utilizar salvo en
+ocasiones donde no se requiere un comportamiento complejo</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// En el método create, this es una Scene</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create</span>() {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> sprite <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">sprite</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="st">'phaser'</span>)<span class="op">;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Este ejemplo es equivalente a añadir un <em>sprite</em> con <code class="sourceCode javascript">add<span class="op">.</span><span class="at">sprite</span></code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">// En el método create, this es una Scene</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create</span>() {</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> sprite <span class="op">=</span> <span class="kw">new</span> Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="fu">Sprite</span>(<span class="kw">this</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="st">'phaser'</span>)<span class="op">;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">existing</span>(sprite)<span class="op">;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En la mayoría de los casos los <em>sprites</em> tendrán un
+comportamiento avanzado: reaccionarán a los controles, ejecutarán
+algoritmos de IA, necesitarán métodos auxiliares, etc</p>
+<p>Por ello, en lugar de usar instancias de las clase <code class="sourceCode javascript">Sprite</code>, es mejor que creemos clases
+adaptadas a nuestras necesidades y añadir instancias de estas clases</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Para ello, nuestras clases <em>sprite</em> deben heredar de <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Sprite"><code>Phaser.GameObjects.Sprite</code></a></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Por ejemplo, considera el <em>sprite</em> de un personaje que aparece
+aleatoriamente y cae</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FallingMartian <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="at">Sprite</span> {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">constructor</span>(scene) {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">400</span><span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> y <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">random</span>() <span class="op">*</span> <span class="dv">400</span><span class="op">;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span>(scene<span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> <span class="st">'phaser'</span>)<span class="op">;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Ahora podemos personalizar su comportamiento durante la fase de
+actualización de Phaser. Por ejemplo:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FallingMartian <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="at">Sprite</span> {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// en las entidades no es update, sino preUpdate()</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">preUpdate</span> () {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Es <strong>muy importante</strong>, para varias cosas, que el <code class="sourceCode javascript">preUpdate</code> de la clase hija llame al
+<code class="sourceCode javascript">preUpdate</code> de la clase padre
+(para que <code class="sourceCode javascript">Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="at">Sprite</span></code>
+sepa que hay que actualizarse):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FallingMartian <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="at">Sprite</span> {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">preUpdate</span> (t<span class="op">,</span> dt) {</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span><span class="op">.</span><span class="fu">preUpdate</span>(t<span class="op">,</span> dt)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// la lógica particular de `FallingMartian`, aquí</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="dv">2</span> <span class="op">*</span> dt <span class="op">/</span> <span class="dv">1000</span><span class="op">;</span> <span class="co">// 2 unidades por segundo</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Usando el ejemplo anterior para añadir un <em>sprite</em>, podemos
+añadir el personaje que cae:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MiEscena <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">Scene</span> {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">create</span>() {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> <span class="dv">10</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> sprite <span class="op">=</span> <span class="kw">new</span> <span class="fu">FallingMartian</span>(<span class="kw">this</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="kw">this</span><span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">existing</span>(sprite)<span class="op">;</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="atributos-y-métodos-relevantes-de-los-sprites" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Atributos y métodos relevantes de los sprites</h2>
+<p>Todos los <code class="sourceCode javascript">Sprite</code> son
+también <code class="sourceCode javascript">Image</code>. Por tanto,
+tienen todos los atributos y métodos de <code class="sourceCode javascript">Image</code></p>
+<p>Más adelante veremos más atributos de los <code class="sourceCode javascript">Sprite</code>, como <code class="sourceCode javascript">anims</code> o <code class="sourceCode javascript">body</code> (para físicas)</p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="transformaciones" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Transformaciones</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Los objetos del juegos pueden alterar su posición, rotación y factor
+de escala</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Se llama transformación a la <strong>alteración de los atributos que
+controlan la posición, la rotación o el factor de escala de una
+entidad</strong></p>
+<p>Recuerda que las transformaciones se ven afectadas por la posición
+del pivote <a href="https://codepen.io/gjimenezucm/pen/zYwZpqK">como
+puedes ver en este ejemplo</a>.</p>
+</section>
+<section id="posicionamiento" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Posicionamiento</h2>
+<p>Para alterar la posición de una entidad, recurrimos a los atributos
+<a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Sprite"><code class="sourceCode javascript">x</code> e <code class="sourceCode javascript">y</code></a></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En el caso de <code class="sourceCode javascript">Sprite</code>, es
+conveniente mover al elemento habiendo creado una clase que herede de
+<code class="sourceCode javascript">Sprite</code> y modificar <code class="sourceCode javascript">x</code> e <code class="sourceCode javascript">y</code> dentro de su <code class="sourceCode javascript">preUpdate</code>:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Martian <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="at">Sprite</span> {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">constructor</span>(scene<span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> speed) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span>(<span class="kw">this</span><span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> <span class="st">'martian'</span>)<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">speed</span> <span class="op">=</span> speed<span class="op">;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    scene<span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">existing</span>(<span class="kw">this</span>)<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">preUpdate</span>(t<span class="op">,</span> dt) {</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">x</span> <span class="op">+=</span> <span class="kw">this</span><span class="op">.</span><span class="at">speed</span><span class="op">*</span>dt <span class="op">/</span> <span class="dv">1000</span><span class="op">;</span> </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="kw">this</span><span class="op">.</span><span class="at">speed</span><span class="op">*</span>dt <span class="op">/</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section id="rotación" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Rotación</h2>
+<p><a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Sprite#angle"><code class="sourceCode javascript">angle</code></a> controla la rotación de
+un <code class="sourceCode javascript">Sprite</code>, en grados (<span class="math inline">[−180...180]</span>)</p>
+<p>También existe <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Sprite#rotation"><code class="sourceCode javascript">rotation</code></a>, para hacer la
+rotación de radianes y es ligeramente más rápido</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>0º es derecha, 90º es abajo…</p>
+<p>Valores negativos del ángulo son rotación antihoraria, y valores
+positivos, horaria</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Cualquier valor <span class="math inline"> &gt; 360</span> equivale a
+restar <span class="math inline">360</span> al ángulo (<code class="sourceCode javascript">angle <span class="op">=</span> <span class="dv">450</span></code>
+es igual que <code class="sourceCode javascript">angle <span class="op">=</span> <span class="dv">90</span></code>)</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">preUpdate</span> (t<span class="op">,</span> dt) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// El marciano da vueltas sin parar</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">angle</span><span class="op">+=</span><span class="kw">this</span><span class="op">.</span><span class="at">angularVelocity</span><span class="op">*</span>dt <span class="op">/</span> <span class="dv">1000</span><span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section id="escalado" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Escalado</h2>
+<p><code class="sourceCode javascript">width</code> y <code class="sourceCode javascript">height</code> controlan la anchura y
+altura, respectivamente</p>
+<p>Con ellos se pueden escalar objetos</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">resizeMe</span> () {</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">width</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">height</span> <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Podemos hacer <em>mirroring</em>, con consiste en hacer una versión
+especular de la imagen, escalando de forma negativa</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En el siguiente código, el <code class="sourceCode javascript">Sprite</code> se encoge tanto que se acaba
+dando la vuelta</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">preUpdate</span>() {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">width</span><span class="op">--;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>… pero generalmente será más útil hacer mirroring con los métodos
+<code>setFlip</code></p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="la-jerarquía-con-contenedores" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>La jerarquía con contenedores</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>La escena contiene entidades (<em>game objects</em>) pero además, en
+Phaser, las entidades pueden contener otras entidades formando así una
+jerarquía en forma de árbol</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>A veces queremos asociar objetos con una jerarquía, con objetos
+<em>hijo</em> que dependan de objetos <em>padre</em></p>
+<figure>
+<img data-src="guerrero.png" style="width:30.0%" alt="La espada y el escudo son hijos del soldado">
+<figcaption aria-hidden="true">La espada y el escudo son <em>hijos</em>
+del soldado</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Un “hijo” es otra entidad cuyas propiedades van unidas y son
+relativas a las del padre</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En Phaser 3 vamos a usar los <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.GameObjects.Container"><code class="sourceCode javascript">Container</code></a>, que son <code class="sourceCode javascript">GameObjects</code> que pueden contener
+otros objetos</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Por ejemplo, si el <code class="sourceCode javascript">Container</code> <code class="sourceCode javascript">A</code> tiene un hijo <code class="sourceCode javascript">B</code> y movemos <code class="sourceCode javascript">A</code>, entonces <code class="sourceCode javascript">B</code> se moverá junto a <code class="sourceCode javascript">A</code> automáticamente:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">// this es una `Scene`</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create</span>() {</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> <span class="kw">new</span> Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="fu">Container</span>(<span class="kw">this</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span> <span class="co">// Martian es un Sprite</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> b <span class="op">=</span> <span class="kw">new</span> <span class="fu">Martian</span>(<span class="st">'phaser'</span>)<span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    a<span class="op">.</span><span class="fu">add</span>(b)<span class="op">;</span> <span class="co">// hacemos que `b` sea hijo de `a`</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    b<span class="op">.</span><span class="at">y</span> <span class="op">=</span> <span class="dv">10</span><span class="op">;</span> <span class="co">// relativo a `a`</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">existing</span>(a)<span class="op">;</span> <span class="co">// lo metemos en la escena</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>La relación entre una entidad y sus entidades hijas es la de
+<strong>pertenencia al sistema de coordenadas</strong></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Es decir, si la entidad <code class="sourceCode javascript">Moon</code> se añade a la
+entidad/container <code class="sourceCode javascript">Earth</code>,
+significa que <code class="sourceCode javascript">Moon</code> se
+encuentra en el sistema de coordenadas de <code class="sourceCode javascript">Earth</code></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Esto se puede lograr haciendo que <code class="sourceCode javascript">Earth</code> sea un <code class="sourceCode javascript">Container</code> que tenga una <code class="sourceCode javascript">Image</code> o <code class="sourceCode javascript">Sprite</code> con su aspecto y, además,
+tenga otros <em>game objects</em> que serían sus <em>hijos</em>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Earth <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="at">Container</span> {</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">constructor</span>(scene<span class="op">,</span> x<span class="op">,</span> y) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> aspecto <span class="op">=</span> scene<span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">sprite</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="st">'earth'</span>)<span class="op">;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span>(scene<span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> aspecto)<span class="op">;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    scene<span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">existing</span>(<span class="kw">this</span>)<span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Creamos también la Luna…</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Moon <span class="kw">extends</span> Phaser<span class="op">.</span><span class="at">GameObjects</span><span class="op">.</span><span class="at">Sprite</span> {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">constructor</span>(scene<span class="op">,</span> x<span class="op">,</span> y) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">super</span>(scene<span class="op">,</span> x<span class="op">,</span> y<span class="op">,</span> <span class="st">'moon'</span>)<span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>… y lo añadimos:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">// this es una `Scene`</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">create</span>() {</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">earth</span> <span class="op">=</span> <span class="kw">new</span> <span class="fu">Earth</span>(<span class="kw">this</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> moon <span class="op">=</span> <span class="kw">new</span> <span class="fu">Moon</span>(<span class="kw">this</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">earth</span><span class="op">.</span><span class="fu">add</span>(<span class="kw">this</span><span class="op">.</span><span class="at">moon</span>)<span class="op">;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Esto significa que al transformar <code class="sourceCode javascript">Earth</code> modificaremos <code class="sourceCode javascript">Moon</code> indirectamente</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>También significa que si transformaremos <code class="sourceCode javascript">Moon</code>, lo haremos respecto del
+sistema de coordenadas de <code class="sourceCode javascript">Earth</code> y no del mundo</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Podéis ver un <a href="https://codepen.io/gjimenezucm/pen/jOmybNe">ejemplo en Phaser
+3</a> en el que las entidades se agrupan según una jerarquía</p>
+</section></section>
+    </div>
+  <div class="backgrounds"><div class="slide-background present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div></div><div class="slide-number" style="display: block;"><a href="#/title-slide">
+					<span class="slide-number-a">1</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right highlight enabled" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Entidades en Phaser </div></div>
+
+  <script src="Entidades%20en%20Phaser_files/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="Entidades%20en%20Phaser_files/notes.js"></script>
+  <script src="Entidades%20en%20Phaser_files/search.js"></script>
+  <script src="Entidades%20en%20Phaser_files/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+</body></html>

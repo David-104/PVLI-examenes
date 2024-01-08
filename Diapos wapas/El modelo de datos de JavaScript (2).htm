@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>El modelo de datos de JavaScript (2)</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/reset.css">
+  <link rel="stylesheet" href="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/beige.css" id="theme">
+  <link rel="stylesheet" href="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/juegosweb.css">
+</head>
+<body style="transition: transform 0.8s ease 0s; --slide-width: 960px; --slide-height: 700px; --slide-scale: 1.0134857142857143;" class="reveal-viewport">
+  <div class="reveal slide center focused has-vertical-slides has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade">
+    <div class="slides" style="width: 960px; height: 700px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(1.01349);">
+
+<section id="title-slide" style="top: 307.5px; display: block;" class="present">
+  <h1 class="title">El modelo de datos de JavaScript (2)</h1>
+</section>
+
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="objetos-y-paso-de-mensajes" class="title-slide slide level1" style="top: 307.5px; display: block;">
+<h1>Objetos y paso de mensajes</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 226px; display: block;">
+
+<p>Los objetos de JavaScript y el poder usar código como un valor más
+permite codificar los conceptos de objeto y paso de mensajes de la
+programación orientada a objetos</p>
+</section>
+<section id="codificando-el-estado" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Codificando el estado</h2>
+<p>Con lo que se ha visto hasta ahora se tiene suficiente conocimiento
+para codificar el estado</p>
+<p>El <strong>conjunto de atributos</strong> del objeto del modelado
+orientado a objetos se traduce al <strong>conjunto de
+propiedades</strong> de los objetos JavaScript</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En el ejemplo de Space Invaders, el estado de los enemigos formado
+por:</p>
+<figure>
+<img style="width:60.0%" alt="Estado del enemigo en el modelado de Space Invaders" src="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/space-invaders-enemy-state.svg" data-lazy-loaded="">
+<figcaption aria-hidden="true">Estado del enemigo en el modelado de
+Space Invaders</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Se puede codificar mediante:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> enemy <span class="op">=</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">graphic</span><span class="op">:</span> <span class="st">'specie01.png'</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">currentDirection</span><span class="op">:</span> <span class="st">'right'</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">position</span><span class="op">:</span> { <span class="dt">x</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">10</span> }<span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">score</span><span class="op">:</span> <span class="dv">40</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>La primera limitación en JavaScript es que <strong>no se puede
+restringir el acceso a las propiedades de un objeto</strong></p>
+<p>Así, nada nos impide poder modificar la posición directamente</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">position</span><span class="op">.</span><span class="at">x</span> <span class="op">=</span> <span class="dv">100</span><span class="op">;</span> <span class="co">// perfectamente válido</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Lo único que podemos hacer es desaconsejar al usuario que utilice las
+propiedades que determinemos como atributos</p>
+<p>Una práctica muy común es añadir un guíon bajo <code class="sourceCode javascript">_</code> a los atributos como indicando
+que son <strong>privados</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> enemy <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">_graphic</span><span class="op">:</span> <span class="st">'specie01.png'</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">_currentDirection</span><span class="op">:</span> <span class="st">'right'</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">_position</span><span class="op">:</span> { <span class="dt">x</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">10</span> }<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">_score</span><span class="op">:</span> <span class="dv">40</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Pero esto es un convenio, y podemos seguir accediendo a los
+atributos</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">=</span> <span class="dv">100</span><span class="op">;</span> <span class="co">// perfectamente válido también</span></span></code></pre></div>
+</section>
+<section id="codificando-la-api" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Codificando la API</h2>
+<p>Los <strong>métodos</strong> pueden implementarse como
+<strong>funciones</strong> en propiedades de un objeto:</p>
+<figure>
+<img style="width:60.0%" alt="API del enemigo en el modelado de Space Invaders" src="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/space-invaders-enemy-state.svg" data-lazy-loaded="">
+<figcaption aria-hidden="true">API del enemigo en el modelado de Space
+Invaders</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> enemy <span class="op">=</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">_graphic</span><span class="op">:</span> <span class="st">'specie01.png'</span><span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">_currentDirection</span><span class="op">:</span> <span class="st">'right'</span><span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">_position</span><span class="op">:</span> { <span class="dt">x</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="dv">10</span> }<span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">_score</span><span class="op">:</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">moveLeft</span><span class="op">:</span> <span class="kw">function</span> () { <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Going left!'</span>)<span class="op">;</span> }<span class="op">,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">moveRight</span><span class="op">:</span> <span class="kw">function</span> () { <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Going right!'</span>)<span class="op">;</span> }<span class="op">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">advance</span><span class="op">:</span> <span class="kw">function</span> () { <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Marching forward!'</span>)<span class="op">;</span> }<span class="op">,</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">shoot</span><span class="op">:</span> <span class="kw">function</span> () { <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'PICHIUM!'</span>)<span class="op">;</span> } <span class="co">// (es un láser)</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Enviar un mensaje a un objeto consiste sencillamente <strong>acceder
+a una función propiedad del destinatario y llamarla</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">shoot</span>()<span class="op">;</span> <span class="co">// primero accedemos con punto, luego llamamos con ()</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">moveLeft</span>()<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">moveLeft</span>()<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">advance</span>()<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>enemy[<span class="st">'shoot'</span>]()<span class="op">;</span> <span class="co">// es lo mismo, acceder con corchetes y llamar con ()</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Cualquier función puede actuar como método. Y como cualquier
+propiedad de un objeto, podemos cambiarla en cualquier momento:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">shoot</span>()<span class="op">;</span> <span class="co">// PICHIUM!</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">shoot</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'PAÑUM!'</span>)<span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">shoot</span>()<span class="op">;</span> <span class="co">// PAÑUM!</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Ahora bien, observa el siguiente comportamiento:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">;</span> <span class="co">// fíjate en la posición</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">moveLeft</span>()<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">;</span> <span class="co">// fíjate en la posición otra vez</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Obviamente, echando un vistazo a lo que hace <code class="sourceCode javascript"><span class="fu">moveLeft</span>()</code>
+no podríamos decir que cambia el estado del objeto destinatario del
+mensaje</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Como cualquier función puede actuar como método, necesitamos una
+forma de <strong>referirnos al destinatario del mensaje</strong>, si
+existe</p>
+<p>Este se guarda en la letiable <strong><code class="sourceCode javascript"><span class="kw">this</span></code></strong></p>
+<p><span class="fragment" data-fragment-index="0">Ojo con <code class="sourceCode javascript"><span class="kw">this</span></code>…
+=)</span></p>
+</section></section>
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="this" class="title-slide slide level1" style="top: 308px; display: block;">
+<h1><code class="sourceCode javascript"><span class="kw">this</span></code></h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Con <code class="sourceCode javascript"><span class="kw">this</span></code>, vamos
+a implementar los métodos de movimiento:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">moveLeft</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">-=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">moveRight</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">advance</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Ahora puedes probar el mismo experimento de antes y ver cómo
+efectivamente alteramos el estado del objeto:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">;</span> <span class="co">// fíjate en la posición</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">moveLeft</span>()<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">;</span> <span class="co">// fíjate en la posición otra vez</span></span></code></pre></div>
+<p>–</p>
+</section>
+<section id="el-valor-de-this" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>El valor de <code class="sourceCode javascript"><span class="kw">this</span></code></h2>
+<p>El valor de <code class="sourceCode javascript"><span class="kw">this</span></code> es uno
+de los aspectos más controvertidos de JavaScript</p>
+<p>En otros lenguajes métodos y funciones son cosas distintas y un
+método <strong>siempre</strong> tiene asociado un y sólo un objeto así
+que <code class="sourceCode javascript"><span class="kw">this</span></code> nunca
+cambia</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Pero en JavaScript, <code class="sourceCode javascript"><span class="kw">this</span></code>
+depende de cómo llamemos a la función, si la llamamos como si fuera una
+función o si la llamamos como si fuera un método</p>
+<p>Considera la siguiente función:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">inspect</span>() {</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// sólo inspecciona this</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Tipo:'</span><span class="op">,</span> <span class="kw">typeof</span> <span class="kw">this</span>)<span class="op">;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">'Valor:'</span><span class="op">,</span> <span class="kw">this</span>)<span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Y prueba lo siguiente:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Piensa qué puede valer this antes de probar cada ejemplo</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> ship1 <span class="op">=</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">'T-Fighter'</span><span class="op">,</span> <span class="dt">method</span><span class="op">:</span> inspect }<span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> ship2 <span class="op">=</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">'X-Wing'</span><span class="op">,</span> <span class="dt">method</span><span class="op">:</span> inspect }<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ship1<span class="op">.</span><span class="fu">method</span>()<span class="op">;</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>ship2<span class="op">.</span><span class="fu">method</span>()<span class="op">;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">inspect</span>()<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En el último caso, el valor de <code class="sourceCode javascript"><span class="kw">this</span></code> es
+<strong>el objeto global</strong> porque la función no se está usando
+como un método por lo que no hay destinatario</p>
+<p>En JavaScript podemos hacer que cualquier objeto sea <code class="sourceCode javascript"><span class="kw">this</span></code> en
+cualquier función</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Para ello usaremos <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Function/apply"><code class="sourceCode javascript"><span class="fu">apply</span>()</code></a>
+en una función:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> onlyNameShip <span class="op">=</span> { <span class="dt">name</span><span class="op">:</span> <span class="st">'Death Star'</span> }<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>inspect<span class="op">.</span><span class="fu">apply</span>(onlyNameShip)<span class="op">;</span> <span class="co">// hace que this valga onlyNameShip en inspect</span></span></code></pre></div>
+<p>A <a href="http://dmitrysoshnikov.com/ecmascript/javascript-the-core/#this-value"><code class="sourceCode javascript"><span class="kw">this</span></code></a> se
+le conoce también como <strong>objeto de contexto</strong> y
+utilizaremos este término de cuando en cuando</p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="tipos-y-constructores-de-objetos" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Tipos y constructores de objetos</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Javascript permite modelar <strong>prototipos de objetos</strong></p>
+<p>JavaScript no permite modelar tipos nuevos y tendremos que dar un
+rodeo</p>
+<p>Esta es una de las principales diferencias con otros lenguajes
+orientados a objetos</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Lo que vamos a hacer es saltarnos el concepto de tipo para abordar
+directamente el de constructor</p>
+<figure>
+<img data-src="space-invaders-constructor-example.svg" style="width:60.0%" alt="Constructores de objetos">
+<figcaption aria-hidden="true">Constructores de objetos</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Vamos a crear dos funciones constructoras, una para puntos y otra
+para disparos:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newPoint</span>(x<span class="op">,</span> y) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> obj <span class="op">=</span> {}<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">x</span> <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">y</span> <span class="op">=</span> y<span class="op">;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> obj<span class="op">;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newShot</span>(position<span class="op">,</span> velocity) {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> obj <span class="op">=</span> {}<span class="op">;</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">_velocity</span> <span class="op">=</span> velocity<span class="op">;</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">advance</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="kw">this</span><span class="op">.</span><span class="at">_velocity</span><span class="op">;</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> obj<span class="op">;</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>La forma de las funciones constructoras es muy similar: crear un
+objeto vacío, establecer las propiedades del objeto y devolver el nuevo
+objeto</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Ahora podemos crear un nuevo disparo con algo así:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Velocidad positiva para que se mueva hacia abajo</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> enemyShot <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Velocidad negativa para que se mueva hacia arriba</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> allyShot <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">585</span>)<span class="op">,</span> <span class="op">-</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>enemyShot <span class="op">!==</span> allyShot<span class="op">;</span></span></code></pre></div>
+</section>
+<section id="reaprovechando-funcionalidad" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Reaprovechando funcionalidad</h2>
+<p>El problema con esta aproximación es que estamos creando funciones
+distintas para comportamientos idénticos. Una función por objeto</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> s1 <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> s2 <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> s3 <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>s1<span class="op">.</span><span class="at">advance</span> <span class="op">!==</span> s2<span class="op">.</span><span class="at">advance</span><span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>s2<span class="op">.</span><span class="at">advance</span> <span class="op">!==</span> s3<span class="op">.</span><span class="at">advance</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>s3<span class="op">.</span><span class="at">advance</span> <span class="op">!==</span> s1<span class="op">.</span><span class="at">advance</span><span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Esto es altamente ineficiente dado que cada función ocupa un espacio
+distinto en memoria</p>
+<p>No necesitamos distintas funciones sino una solamente actuando sobre
+distintos objetos</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Así que vamos a <strong>crear un objeto que contenga sólamente la
+API</strong>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> shotAPI <span class="op">=</span> {</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">advance</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="kw">this</span><span class="op">.</span><span class="at">_velocity</span><span class="op">;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Y a usarlo en la creación del objeto para referenciar la API:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newShot</span>(position<span class="op">,</span> velocity) {</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> obj <span class="op">=</span> {}<span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">_velocity</span> <span class="op">=</span> velocity<span class="op">;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">advance</span> <span class="op">=</span> shotAPI<span class="op">.</span><span class="at">advance</span><span class="op">;</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> obj<span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Ahora todas las instancias comparten la misma función pero cada
+función actúa sobre el objeto correspondiente gracias al uso de <code class="sourceCode javascript"><span class="kw">this</span></code>:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> s1 <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> s2 <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> s3 <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>s1<span class="op">.</span><span class="at">advance</span> <span class="op">===</span> s2<span class="op">.</span><span class="at">advance</span><span class="op">;</span> <span class="co">// ahora SÍ son iguales</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>s2<span class="op">.</span><span class="at">advance</span> <span class="op">===</span> s3<span class="op">.</span><span class="at">advance</span><span class="op">;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>s3<span class="op">.</span><span class="at">advance</span> <span class="op">===</span> s1<span class="op">.</span><span class="at">advance</span><span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Para hacer todavía más fuerte la asociación entre el constructor y la
+API, modificamos el <strong>objeto con la API como una propiedad de la
+función constructora</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newShot</span>(position<span class="op">,</span> velocity) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> obj <span class="op">=</span> {}<span class="op">;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">_velocity</span> <span class="op">=</span> velocity<span class="op">;</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">advance</span> <span class="op">=</span> newShot<span class="op">.</span><span class="at">api</span><span class="op">.</span><span class="at">advance</span><span class="op">;</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> obj<span class="op">;</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Recuerda, una función es un objeto, así que le podemos añadir una propiedad</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>newShot<span class="op">.</span><span class="at">api</span> <span class="op">=</span> {</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">advance</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="kw">this</span><span class="op">.</span><span class="at">_velocity</span><span class="op">;</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="la-cadena-de-prototipos" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>La cadena de prototipos</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>JavaScript posee una característica muy representativa y única del
+lenguaje: <strong>la cadena de prototipos</strong></p>
+<p>Puedes experimentar con ella en <a href="http://www.objectplayground.com/">Object Playground</a>, una
+excelente herramienta que te ayudará a visualizarla</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>La idea no es complicada. La cadena de prototipos <strong>es una
+lista de búsqueda para las propiedades</strong></p>
+<p>Cada elemento de la cadena es <strong>prototipo</strong> del objeto
+anterior</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Cuando accedemos a la propiedad de un objeto, esta propiedad se busca
+en el objeto y si no se encuentra, se busca en el prototipo del objeto,
+y así sucesivamente hasta alcanzar la propiedad o el final de esta
+cadena</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Por ejemplo:</p>
+<pre><code>obj1                    obj2               obj3
+{ a: 1, b: 2, c: 3} --&gt; { d: 4, e: 5 } --&gt; { f: 6 }
+obj1.c -------↑           ↑                  ↑
+obj1.d -------------------|                  |
+obj1.f --------------------------------------|
+obj1.z ------------------------------------------------X</code></pre>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Crear esta jerarquía en JavaScript requiere el uso de <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Object/create"><code class="sourceCode javascript"><span class="bu">Object</span><span class="op">.</span><span class="fu">create</span>()</code></a>:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">// La cadena se monta de atrás hacia adelante</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> obj3 <span class="op">=</span> { <span class="dt">f</span><span class="op">:</span> <span class="dv">6</span> }<span class="op">;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Encadenamos obj2 a obj3</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> obj2 <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">create</span>(obj3)<span class="op">;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>obj2<span class="op">.</span><span class="at">d</span> <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>obj2<span class="op">.</span><span class="at">e</span> <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Encadenamos obj1 a obj2</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> obj1 <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">create</span>(obj2)<span class="op">;</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="at">a</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="at">b</span> <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="at">c</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="at">c</span><span class="op">;</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="at">d</span><span class="op">;</span></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="at">f</span><span class="op">;</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="at">z</span><span class="op">;</span> <span class="co">// undefined</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>El método <code class="sourceCode javascript"><span class="bu">Object</span><span class="op">.</span><span class="fu">create</span>()</code>
+crea un nuevo objeto vacío (como <code class="sourceCode javascript">{}</code>) cuyo prototipo es el objeto
+pasado como parámetro</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Se puede usar el método <a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty"><code class="sourceCode javascript"><span class="fu">hasOwnProperty</span>()</code></a>
+para determinar si una propiedad pertenece a un objeto sin atravesar la
+cadena de prototipos:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'c'</span>)<span class="op">;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'d'</span>)<span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'f'</span>)<span class="op">;</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>obj1<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'z'</span>)<span class="op">;</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>obj2<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'c'</span>)<span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>obj2<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'d'</span>)<span class="op">;</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>obj2<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'f'</span>)<span class="op">;</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>obj2<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'z'</span>)<span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>obj3<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'c'</span>)<span class="op">;</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>obj3<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'d'</span>)<span class="op">;</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>obj3<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'f'</span>)<span class="op">;</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>obj3<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'z'</span>)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Se puede usar el método <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf"><code class="sourceCode javascript"><span class="bu">Object</span><span class="op">.</span><span class="at">getPrototypeOf</span></code></a>
+para obtener el prototipo de un objeto:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(obj1) <span class="op">===</span> obj2<span class="op">;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(obj2) <span class="op">===</span> obj3<span class="op">;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(obj3) <span class="op">===</span> <span class="bu">Object</span><span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(<span class="bu">Object</span><span class="op">.</span><span class="at">prototype</span>) <span class="op">===</span> <span class="kw">null</span><span class="op">;</span></span></code></pre></div>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="constructores-y-cadenas-de-prototipos" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Constructores y cadenas de prototipos</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Los prototipos se prestan a ser el lugar ideal para contener la API
+que es el comportamiento común de todos los objetos de un tipo</p>
+<pre><code>let obj = newShot()                   newShot.api
+{_position: {x: 10...}...} --&gt; {advance: function...};
+
+obj._position.y ----↑                       ↑
+obj.advance --------------------------------|
+obj.goBack ----------------------------------------------X</code></pre>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Para crear este enlace modificaremos el constructor:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">newShot</span>(position<span class="op">,</span> velocity) {</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Con esto la API es el prototipo del objeto</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> obj <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">create</span>(newShot<span class="op">.</span><span class="at">api</span>)<span class="op">;</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  obj<span class="op">.</span><span class="at">_velocity</span> <span class="op">=</span> velocity<span class="op">;</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> obj<span class="op">;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>newShot<span class="op">.</span><span class="at">api</span> <span class="op">=</span> {</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">advance</span><span class="op">:</span> <span class="kw">function</span> () {</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="kw">this</span><span class="op">.</span><span class="at">_velocity</span><span class="op">;</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Y ahora probamos a crear un nuevo disparo:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> shot <span class="op">=</span> <span class="fu">newShot</span>(<span class="fu">newPoint</span>(<span class="dv">0</span><span class="op">,</span><span class="dv">0</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>shot<span class="op">;</span> <span class="co">// al inspeccionar shot sólo se muestran las propiedades del objeto</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>shot<span class="op">.</span><span class="at">advance</span><span class="op">;</span> <span class="co">// pero advance existe en su prototipo</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>shot<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'advance'</span>)<span class="op">;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(shot)<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'advance'</span>)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Si hiciéramos esto con todos los constructores, cláramente
+encontraríamos un patrón:</p>
+<ol type="1">
+<li>Crea un objeto para contener la API</li>
+<li>Implementa la API como propiedades de este objeto</li>
+<li>En el constructor haz que este objeto sea el prototipo de un nuevo
+objeto</li>
+<li>Establece las propiedades del nuevo objeto con el estado</li>
+<li>Devuelve el nuevo objeto</li>
+</ol>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Sólo los pasos 2 y 4 involucran diferencias de un constructor a otro.
+Todo lo demás es exactamente igual. Tanto es así que JavaScript lo tiene
+en cuenta y viene con los mecanismos para automatizar los pasos 1, 3 y
+5</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Primero, JavaScript permite que cualquier función pueda usarse como
+constructor</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Cada vez que escribimos una función, JavaScript <strong>crea una
+propiedad de la función llamada <code>prototype</code></strong> que es
+un objeto con una única propiedad <code>constructor</code> que apunta a
+la función</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">anyFunction</span>() {}</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>anyFunction<span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>anyFunction<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">constructor</span> <span class="op">===</span> anyFunction<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Esto automatiza el paso 1. Ya no es necesario el objeto <code class="sourceCode javascript">api</code> que preparábamos nosotros
+manualmente</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Ahora, al llamar a la función con el operador <code class="sourceCode javascript"><span class="kw">new</span></code>
+delante, se crea un <strong>nuevo objeto cuyo prototipo es precisamente
+la propiedad <code class="sourceCode javascript">prototype</code></strong> de la
+función:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> obj <span class="op">=</span> <span class="kw">new</span> <span class="fu">anyFunction</span>()<span class="op">;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> anotherObj <span class="op">=</span> <span class="kw">new</span> <span class="fu">anyFunction</span>()<span class="op">;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Los objetos son distintos</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>obj <span class="op">!==</span> anotherObj<span class="op">;</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Pero sus prototipos son iguales</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(obj) <span class="op">===</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(anotherObj)<span class="op">;</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Y además son la propiedad prototype de la función</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(obj) <span class="op">===</span> anyFunction<span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Con esto automatizamos el paso 3. Ya no es necesario llamar a <code class="sourceCode javascript"><span class="bu">Object</span><span class="op">.</span><span class="fu">create</span>()</code>
+para establecer la cadena de prototipos entre objeto y API</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Finalmente, cuando se llama con <code class="sourceCode javascript"><span class="kw">new</span></code>, la
+<strong>función recibe como objeto de contexto (recuerda, el <code class="sourceCode javascript"><span class="kw">this</span></code>) el
+elemento que está siendo creado</strong> lo que nos permite establecer
+sus atributos</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Hero</span>(name) {</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">name</span> <span class="op">=</span> name<span class="op">;</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">sword</span> <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">shield</span> <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> hero <span class="op">=</span> <span class="kw">new</span> <span class="fu">Hero</span>(<span class="st">'Link'</span>)<span class="op">;</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>hero<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Si la <strong>función devuelve nada</strong>, el resultado del
+operador <code class="sourceCode javascript"><span class="kw">new</span></code> será el
+nuevo objeto. Esto automatiza el paso 5 puesto que no es necesario
+devolver el nuevo objeto, esta devolución se hace implícita</p>
+<p>Veamos como queda el constructor de punto:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Point</span>(x<span class="op">,</span> y) {</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">x</span> <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">y</span> <span class="op">=</span> y<span class="op">;</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Y el del disparo:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Shot</span>(position<span class="op">,</span> velocity) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_velocity</span> <span class="op">=</span> velocity<span class="op">;</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="co">// El prototipo ya existe, pero le añadimos el método advance()</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>Shot<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">advance</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="kw">this</span><span class="op">.</span><span class="at">_velocity</span><span class="op">;</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Ahora crear los objetos será cuestión de usar <code class="sourceCode javascript"><span class="kw">new</span></code>:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> enemyShot <span class="op">=</span> <span class="kw">new</span> <span class="fu">Shot</span>(<span class="kw">new</span> <span class="bu">Point</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> allyShot <span class="op">=</span> <span class="kw">new</span> <span class="fu">Shot</span>(<span class="kw">new</span> <span class="bu">Point</span>(<span class="dv">15</span><span class="op">,</span> <span class="dv">585</span>)<span class="op">,</span> <span class="op">-</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>enemyShot <span class="op">!==</span> allyShot<span class="op">;</span></span></code></pre></div>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="herencia" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Herencia</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Sabemos como crear objetos con atributos y métodos y sabemos como
+hacerlo eficazmente usando constructores y la cadena de prototipos</p>
+<figure>
+<img data-src="space-invaders-hierarchy.svg" style="width:50.0%" alt="Relación de herencia entre nave y los enemigos y la nave aliada">
+<figcaption aria-hidden="true">Relación de herencia entre nave y los
+enemigos y la nave aliada</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Falta explicar cómo podemos crear una <strong>relación de
+herencia</strong></p>
+<p>Usemos el ejemplo de los enemigos y la nave protagonista de la
+lección anterior</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Necesitaremos pues nuestros constructores de puntos y disparos:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Point</span>(x<span class="op">,</span> y) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">x</span> <span class="op">=</span> x<span class="op">;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">y</span> <span class="op">=</span> y<span class="op">;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Shot</span>(position<span class="op">,</span> velocity) {</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_velocity</span> <span class="op">=</span> velocity<span class="op">;</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>Shot<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">advance</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="kw">this</span><span class="op">.</span><span class="at">_velocity</span><span class="op">;</span></span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>El constructor del enemigo podría ser:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Enemy</span>(graphic<span class="op">,</span> position<span class="op">,</span> score) {</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_graphic</span> <span class="op">=</span> graphic<span class="op">;</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_currentDirection</span> <span class="op">=</span> <span class="st">'right'</span><span class="op">;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_score</span> <span class="op">=</span> score<span class="op">;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">moveLeft</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">-=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">moveRight</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">advance</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">shoot</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> firePosition <span class="op">=</span> <span class="kw">new</span> <span class="bu">Position</span>(<span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> shot <span class="op">=</span> <span class="kw">new</span> <span class="fu">Shot</span>(firePosition<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> shot<span class="op">;</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Y el de la nave aliada:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Ally</span>(position) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_graphic</span> <span class="op">=</span> <span class="st">'ally.png'</span><span class="op">;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>Ally<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">moveLeft</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">-=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>Ally<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">moveRight</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>Ally<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">shoot</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> firePosition <span class="op">=</span> <span class="kw">new</span> <span class="bu">Position</span>(<span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">-</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> shot <span class="op">=</span> <span class="kw">new</span> <span class="fu">Shot</span>(firePosition<span class="op">,</span> <span class="op">-</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> shot<span class="op">;</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Podemos pensar en un constructor que capture las propiedades comunes
+de ambos tipos:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Ship</span>(graphic<span class="op">,</span> position) {</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_graphic</span> <span class="op">=</span> graphic<span class="op">;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_position</span> <span class="op">=</span> position<span class="op">;</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>Ship<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">moveLeft</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">-=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>Ship<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">moveRight</span> <span class="op">=</span> <span class="kw">function</span> () { <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span> <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span> }<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>No incluimos disparar porque unos disparan hacia arriba y otros hacia
+abajo</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Recordemos que ahora los constructores de la nave aliada y los
+enemigos pedirán primero al constructor de nave una nave y luego la
+personalizarán</p>
+<figure>
+<img data-src="space-invaders-hierarchy-constructor.svg" style="width:50.0%" alt="Jerarquía de constructores">
+<figcaption aria-hidden="true">Jerarquía de constructores</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<div class="sourceCode" id="cb38"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Enemy</span>(graphic<span class="op">,</span> position<span class="op">,</span> score) {</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  Ship<span class="op">.</span><span class="fu">apply</span>(<span class="kw">this</span><span class="op">,</span> [graphic<span class="op">,</span> position])<span class="op">;</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_currentDirection</span> <span class="op">=</span> <span class="st">'right'</span><span class="op">;</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_score</span> <span class="op">=</span> score<span class="op">;</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Ally</span>(position) {</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  Ship<span class="op">.</span><span class="fu">apply</span>(<span class="kw">this</span><span class="op">,</span> [<span class="st">'ally.png'</span><span class="op">,</span> position])<span class="op">;</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Con <a href="https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/Function/apply"><code class="sourceCode javascript"><span class="fu">apply</span>()</code></a>
+se puede ejecutar una función indicando cuál será su objeto de contexto
+y sus parámetros</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Con la configuración anterior, las nuevas instancias de enemigos y
+aliados pasarán primero por el constructor de <code class="sourceCode javascript">Ship</code> que establecerá los
+<strong>atributos comunes</strong> y luego serán modificados cada uno
+por el constructor pertinente para convertirse en enemigos o aliados
+concretamente</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En cuanto a la API, lo ideal sería contar con una cadena de
+prototipos de esta forma:</p>
+<pre><code>  new Enemy()          Enemy.prototype      Ship.prototype
+{ _position: ...} --&gt; { advance: ... } --&gt; { moveLeft: ... }
+enemy._score ---↑            ↑                   ↑
+enemy.advance ---------------|                   |
+enemy.moveLeft ----------------------------------|</code></pre>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>De forma que los atributos del enemigo estén en la instancia, la API
+específica en la propiedad <code class="sourceCode javascript">prototype</code> del constructor
+<code>Enemy</code> y la API común en la propiedad <code class="sourceCode javascript">prototype</code> del constructor <code class="sourceCode javascript">Ship</code></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Como ocurría con el ejemplo en la sección anterior, tendremos que
+crear la cadena de atrás hacia adelante. El enlace entre las instancias
+y los constructores nos lo proporciona JavaScript al utilizar <code class="sourceCode javascript"><span class="kw">new</span></code> pero el
+enlace entre la propiedad <code class="sourceCode javascript">prototype</code> de <code class="sourceCode javascript">Enemy</code> y de <code class="sourceCode javascript">Ship</code> <strong>tenemos que
+establecerlo manualmente</strong></p>
+</section>
+<section id="herencia-en-el-tipo-enemy" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Herencia en el tipo <code class="sourceCode javascript">Enemy</code></h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Inspecciona la propiedad prototype</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Enlaza ambas propiedades prototype</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span> <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">create</span>(Ship<span class="op">.</span><span class="at">prototype</span>)<span class="op">;</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Inspecciona la propiedad prototype otra vez y busca diferencias</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Corrige la propiedad constructor</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">constructor</span> <span class="op">=</span> Enemy<span class="op">;</span></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Añade el método específico del tipo Enemy</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">advance</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a><span class="co">// Otro método específico</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">shoot</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> firePosition <span class="op">=</span> <span class="kw">new</span> <span class="bu">Point</span>(<span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">+</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> shot <span class="op">=</span> <span class="kw">new</span> <span class="fu">Shot</span>(firePosition<span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> shot<span class="op">;</span></span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section id="herencia-en-el-tipo-ally" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Herencia en el tipo <code class="sourceCode javascript">Ally</code></h2>
+<div class="sourceCode" id="cb41"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Lo mismo para el aliado</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>Ally<span class="op">.</span><span class="at">prototype</span> <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">create</span>(Ship<span class="op">.</span><span class="at">prototype</span>)<span class="op">;</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>Ally<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">constructor</span> <span class="op">=</span> Ally</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>Ally<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="at">shoot</span> <span class="op">=</span> <span class="kw">function</span> () {</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> firePosition <span class="op">=</span> <span class="kw">new</span> <span class="bu">Point</span>(<span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">x</span><span class="op">,</span> <span class="kw">this</span><span class="op">.</span><span class="at">_position</span><span class="op">.</span><span class="at">y</span> <span class="op">-</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> shot <span class="op">=</span> <span class="kw">new</span> <span class="fu">Shot</span>(firePosition<span class="op">,</span> <span class="op">-</span><span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> shot<span class="op">;</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Ahora sí, podemos crear un enemigo y un aliado usando sus
+constructores:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> enemy <span class="op">=</span> <span class="kw">new</span> <span class="fu">Enemy</span>(<span class="st">'enemy1.png'</span><span class="op">,</span> <span class="kw">new</span> <span class="bu">Point</span>(<span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>)<span class="op">,</span> <span class="dv">40</span>)<span class="op">;</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> ally <span class="op">=</span> <span class="kw">new</span> <span class="fu">Ally</span>(<span class="kw">new</span> <span class="bu">Point</span>(<span class="dv">10</span><span class="op">,</span> <span class="dv">590</span>))<span class="op">;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(ally) <span class="op">===</span> Ally<span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(enemy) <span class="op">===</span> Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>Ally<span class="op">.</span><span class="at">prototype</span> <span class="op">!==</span> Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(Ally<span class="op">.</span><span class="at">prototype</span>) <span class="op">===</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(Enemy<span class="op">.</span><span class="at">prototype</span>)<span class="op">;</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="bu">Object</span><span class="op">.</span><span class="fu">getPrototypeOf</span>(Ally<span class="op">.</span><span class="at">prototype</span>) <span class="op">===</span> Ship<span class="op">.</span><span class="at">prototype</span><span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Y comprobar dónde está cada propiedad</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'_score'</span>)<span class="op">;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'advance'</span>)<span class="op">;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'moveLeft'</span>)<span class="op">;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'_score'</span>)<span class="op">;</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'advance'</span>)<span class="op">;</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>Enemy<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'moveLeft'</span>)<span class="op">;</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>Ship<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'_score'</span>)<span class="op">;</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>Ship<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'advance'</span>)<span class="op">;</span></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>Ship<span class="op">.</span><span class="at">prototype</span><span class="op">.</span><span class="fu">hasOwnProperty</span>(<span class="st">'moveLeft'</span>)<span class="op">;</span></span></code></pre></div>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="polimorfismo" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Polimorfismo</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Las relaciones de herencia que acabamos de establecer nos permiten
+decir que un enemigo es una instancia del tipo <code class="sourceCode javascript">Enemy</code> pero también lo es del tipo
+<code class="sourceCode javascript">Ship</code></p>
+<p>Una misma instancia <strong>tiene múltiples formas</strong> gracias a
+la herencia En programación orientada a objetos a esto se lo llama
+<strong>polimorfismo</strong></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Alternativamente podemos decir que un enemigo es una instancia de
+<code class="sourceCode javascript">Enemy</code> porque tiene la API de
+<code class="sourceCode javascript">Enemy</code> o que es una instancia
+de <code class="sourceCode javascript">Ship</code> porque tiene la API
+de <code class="sourceCode javascript">Ship</code></p>
+<p>Esto es equivalente a decir que las propiedades <code class="sourceCode javascript">prototype</code> de <code class="sourceCode javascript">Enemy</code> y <code class="sourceCode javascript">Ship</code> están en la cadena de
+prototipos del objeto</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>El operador <code class="sourceCode javascript"><span class="kw">instanceof</span></code>
+devuelve verdadero si la propiedad <code class="sourceCode javascript">prototype</code> de la función de la
+derecha está en la cadena de prototipos del objeto de la izquierda</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>enemy <span class="kw">instanceof</span> Enemy<span class="op">;</span>  <span class="co">// el primer eslabón</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>enemy <span class="kw">instanceof</span> Ship<span class="op">;</span>   <span class="co">// el segundo</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>enemy <span class="kw">instanceof</span> <span class="bu">Object</span><span class="op">;</span> <span class="co">// el tercero</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>enemy <span class="kw">instanceof</span> Ally<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En lo referente al estado, resulta conveniente saber qué constructor
+ha construido el objeto. Esto es como determinar cuál es el
+<strong>primer eslabón</strong> de la cadena de prototipos</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Como todos los prototipos tienen una propiedad <code class="sourceCode javascript">constructor</code> que referencia al
+constructor que los tiene, proporcionar esta propiedad siempre recaerá
+sobre el primer prototipo</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">constructor</span><span class="op">;</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">constructor</span> <span class="op">===</span> Enemy<span class="op">;</span> <span class="co">// fue construido por Enemy, no por Ship</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>enemy<span class="op">.</span><span class="at">constructor</span> <span class="op">!==</span> Ship<span class="op">;</span> <span class="co">// es cierto que Ship fue utilizado pero nada más</span></span></code></pre></div>
+</section>
+<section id="duck-typing" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Duck typing</h2>
+<blockquote>
+<p>In other words, don’t check whether it IS-a duck: check whether it
+QUACKS-like-a duck, WALKS-like-a duck, etc, etc, depending on exactly
+what subset of duck-like behaviour you need to play your language-games
+with</p>
+</blockquote>
+<p><a href="https://groups.google.com/forum/?hl=en#!msg/comp.lang.python/CCs2oJdyuzc/NYjla5HKMOIJ">Alex
+Martelli sobre polimorfismo</a></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>La frase se refiere a que más que comprobar si algo es una instancia
+de un tipo, deberíamos comprobar si tiene la funcionalidad que
+necesitamos</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>JavaScript es tan dinámico que el operador <code class="sourceCode javascript"><span class="kw">instanceof</span></code>
+y la propiedad <code class="sourceCode javascript">constructor</code>
+sólo tienen sentido si seguimos los convenios aprendidos en la
+lección</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Nada nos impide borrar la propiedad <code class="sourceCode javascript">constructor</code> de un prototipo o
+sobreescribirla en un objeto determinado. En las nuevas versiones de
+JavaScript, el prototipo de un objeto puede cambiar después de haber
+sido construido</p>
+</section></section>
+    </div>
+  <div class="backgrounds"><div class="slide-background present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div></div><div class="slide-number" style="display: block;"><a href="#/title-slide">
+					<span class="slide-number-a">1</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right highlight enabled" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">El modelo de datos de JavaScript (2) </div></div>
+
+  <script src="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/notes.js"></script>
+  <script src="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/search.js"></script>
+  <script src="El%20modelo%20de%20datos%20de%20JavaScript%20(2)_files/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+</body></html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Audio en Phaser</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Audio%20en%20Phaser_files/reset.css">
+  <link rel="stylesheet" href="Audio%20en%20Phaser_files/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Audio%20en%20Phaser_files/beige.css" id="theme">
+  <link rel="stylesheet" href="Audio%20en%20Phaser_files/juegosweb.css">
+</head>
+<body style="transition: transform 0.8s ease 0s; --slide-width: 960px; --slide-height: 700px; --slide-scale: 1.0134857142857143;" class="reveal-viewport">
+  <div class="reveal slide center focused has-vertical-slides has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade">
+    <div class="slides" style="width: 960px; height: 700px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(1.01349);">
+
+<section id="title-slide" style="top: 307.5px; display: block;" class="present">
+  <h1 class="title">Audio en Phaser</h1>
+</section>
+
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="motores-de-audio" class="title-slide slide level1" style="top: 307.5px; display: block;">
+<h1>Motores de audio</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 252px; display: block;">
+
+<p>El sonido, a bajo nivel, es un aspecto complejo y requiere de
+conocimiento amplio de física y procesamiento de señal</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En general, cuando estamos haciendo videojuegos, queremos una
+<em>capa de abstracción</em> sobre la gestión de sonido</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Es muy normal asumir que el sonido en un videojuego consiste en un
+conjunto de archivos (sonidos y música) que queremos reproducir (al
+lanzarse eventos, o de fondo)</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Aunque, desde luego, esto no sea necesariamente así en todos los
+juegos, es como vamos a tratarlo en este curso</p>
+</section></section>
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="formatos" class="title-slide slide level1" style="top: 307.5px; display: block;">
+<h1>Formatos</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Los sonidos se almacenan en digital de dos formas:</p>
+<ul>
+<li>Guardando la onda (análogo a un mapa de bits)</li>
+<li>Guardando las notas musicales, su duración, etc. (análogo a una
+imagen vectorial): <a href="https://es.wikipedia.org/wiki/MIDI">MIDI</a></li>
+</ul>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Nosotros trabajaremos sólo con audio de onda (no MIDI)</p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="audio-en-phaser" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Audio en Phaser</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Phaser provee, entre otros módulo, uno de gestión de audio de <em>muy
+alto nivel</em></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Esto quiere decir que, para gestionar audio, sólo tenemos que
+preocuparnos de:</p>
+<ol>
+<li>tener los archivos</li>
+<li>cargarlos</li>
+<li>(asegurarnos de que están bien cargados)</li>
+<li>reproducirlos –de fondo, como eventos, en loop…</li>
+<li>enterarnos de cuándo han acabado de reproducirse (si queremos)</li>
+</ol>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="carga-de-sonidos" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Carga de sonidos</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Cargar el sonido <code>explosion.mp3</code> y asignarle un
+nombre:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scene<span class="op">.</span><span class="at">load</span><span class="op">.</span><span class="fu">audio</span>(<span class="st">"explosion"</span><span class="op">,</span> <span class="st">"assets/audio/SoundEffects/explosion.mp3"</span>)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>También podemos hacer una “lista de prioridad” de carga. El navegador
+intentará cargar estos archivos (por orden), sólo se quedará con uno</p>
+<p>En <code class="sourceCode javascript">preload</code> de nuestra
+escena:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>scene<span class="op">.</span><span class="at">load</span><span class="op">.</span><span class="fu">audio</span>(<span class="st">"boden"</span><span class="op">,</span> [</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"assets/audio/bodenstaendig_2000_in_rock_4bit.mp3"</span><span class="op">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"assets/audio/bodenstaendig_2000_in_rock_4bit.ogg"</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>])<span class="op">;</span></span></code></pre></div>
+<p>(Por ejemplo, Firefox elegirá el OGG)</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Añadimos el audio al juego <a href="https://newdocs.phaser.io/docs/3.55.1/Phaser.Types.Sound.SoundConfig">con
+una configuración inicial</a> (opcional):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> config <span class="op">=</span> {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">mute</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">volume</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">rate</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">detune</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">seek</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">loop</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">delay</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span> <span class="co">// config es opcional</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="kw">this</span><span class="op">.</span><span class="at">explosion</span> <span class="op">=</span> scene<span class="op">.</span><span class="at">sound</span><span class="op">.</span><span class="fu">add</span>(<span class="st">"explosion"</span><span class="op">,</span> config)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Y, finalmente, reproducimos el sonido:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>explosion<span class="op">.</span><span class="fu">play</span>()<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Si queremos parar la reproducción</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>music<span class="op">.</span><span class="fu">stop</span>()<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Hacer que un sonido se repita</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// hace que `explosion` se vuelva a reproducir cuando acabe</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">// (muy útil para música)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>explosion<span class="op">.</span><span class="fu">setLoop</span>(<span class="kw">true</span>)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Si queremos borrarlo en algún momento, destruimos la entidad (con
+<code class="sourceCode javascript"><span class="fu">destroy</span>()</code>)
+y el recurso (con <code class="sourceCode javascript">remove</code>)</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>explosion<span class="op">.</span><span class="fu">destroy</span>()<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>scene<span class="op">.</span><span class="at">sound</span><span class="op">.</span><span class="fu">remove</span>(<span class="st">"explosion"</span>)<span class="op">;</span></span></code></pre></div>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="comenzar-el-sonido" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Comenzar el sonido</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Los navegadores no nos permiten empezar a reproducir audio <strong>si
+no es por un evento lanzado por el usuario</strong></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Así que antes de poder reproducir, tendremos que haber hecho clic
+(por ejemplo) en un botón de nuestro juego</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Esto se suele conseguir con un botón de <em>Jugar</em>, o algo
+similar</p>
+<p>¡Sed creativos!</p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="eventos-de-sonido-en-phaser" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Eventos de sonido en Phaser</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>No solemos saber (o no es cómodo saber) cuánto dura un sonido</p>
+<p>Así que lo que hacemos es <em>decirle a Phaser que haga algo cuando
+el sonido termine de reproducirse</em></p>
+</section>
+<section id="evento-cuando-el-sonido-termina-de-reproducirse" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Evento cuando el sonido termina de reproducirse</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">create</span>() {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  explosion<span class="op">.</span><span class="fu">once</span>(<span class="st">"stop"</span><span class="op">,</span> (music) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ...</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  })<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>No es el único evento pero sí suele ser el más comúnmente usado</p>
+<p>Phaser proporciona otros muchos <a href="https://newdocs.phaser.io/docs/3.55.1/Phaser.Sound.Events">eventos
+relacionados con la reproducción de sonido</a></p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="audio-sprites" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Audio sprites</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Antes de las tecnologías de audio HTML modernas, los navegadores
+tenían muchas restricciones y problemas para cargar varios archivos de
+audio</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Los <a href="https://newdocs.phaser.io/docs/3.55.1/Phaser.Sound.BaseSoundManager#addAudioSprite"><em>audio
+sprites</em></a> son un sistema en el que un solo archivo de audio
+contiene varios sonidos grabados (uno detrás de otro)</p>
+<p>Se acompañan de un archivo con información de dónde empieza y acaba
+cada uno (JSON)</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Es decir, algo muy similar a un <em>atlas de texturas</em></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>En general, no son necesarios hoy en día (aunque pueden hacer más
+eficiente la carga)</p>
+<p><a href="https://phaser.io/examples/v3/view/audio/html5-audio/audiosprite#">Aquí
+hay un ejemplo de este tipo de audio</a></p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="recursos-de-audio" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Recursos de audio</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<ul>
+<li>Recursos de audio de Phaser (los <strong>assets</strong>)</li>
+<li><a href="https://www.freesound.org/">Free sound</a></li>
+<li><a href="https://soundbible.com/">SoundBible</a></li>
+<li><a href="https://www.newgrounds.com/audio">Newgrounds Audio</a></li>
+<li><a href="https://freemusicarchive.org/home">Free Music
+Archive</a></li>
+<li>Generadores
+<ul>
+<li><a href="https://sfxr.me/">jsfxr</a></li>
+<li><a href="https://sfbgames.itch.io/chiptone">Chiptone</a></li>
+<li><a href="https://keithclark.github.io/ZzFXM/">ZzFXM</a></li>
+<li><a href="https://pernyblom.github.io/abundant-music/index.html">Abundant-music</a></li>
+</ul></li>
+<li><em>Cualquier DAW (Digital Audio Workstation) con un buen
+sinte</em></li>
+</ul>
+</section></section>
+    </div>
+  <div class="backgrounds"><div class="slide-background present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div></div><div class="slide-number" style="display: block;"><a href="#/title-slide">
+					<span class="slide-number-a">1</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right highlight enabled" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Audio en Phaser </div></div>
+
+  <script src="Audio%20en%20Phaser_files/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="Audio%20en%20Phaser_files/notes.js"></script>
+  <script src="Audio%20en%20Phaser_files/search.js"></script>
+  <script src="Audio%20en%20Phaser_files/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+</body></html>

@@ -1,0 +1,4 @@
+bird: 32 x 32 px
+bird2: 32 x 32 px
+duck: 48 x 48 px
+duck2: 48 x 48 px

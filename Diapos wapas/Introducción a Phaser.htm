@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html class="reveal-full-page"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>Introducción a Phaser</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Introducci%C3%B3n%20a%20Phaser_files/reset.css">
+  <link rel="stylesheet" href="Introducci%C3%B3n%20a%20Phaser_files/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="Introducci%C3%B3n%20a%20Phaser_files/beige.css" id="theme">
+  <link rel="stylesheet" href="Introducci%C3%B3n%20a%20Phaser_files/juegosweb.css">
+</head>
+<body style="transition: transform 0.8s ease 0s; --slide-width: 960px; --slide-height: 700px; --slide-scale: 1.0134857142857143;" class="reveal-viewport">
+  <div class="reveal slide center focused has-vertical-slides has-horizontal-slides ready" role="application" data-transition-speed="default" data-background-transition="fade">
+    <div class="slides" style="width: 960px; height: 700px; inset: 50% auto auto 50%; transform: translate(-50%, -50%) scale(1.01349);">
+
+<section id="title-slide" style="top: 307.5px; display: block;" class="present">
+  <h1 class="title">Introducción a Phaser</h1>
+</section>
+
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="qué-es-phaser" class="title-slide slide level1" style="top: 307.5px; display: block;">
+<h1>Qué es Phaser</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 190px; display: block;">
+
+<p><strong>Phaser</strong> es un framework que nos permite construir
+juegos en HTML5 para equipos de escritorio y dispositivos móviles</p>
+<p>Tiene una apasionada comunidad en el proceso de desarrollo, por lo
+que crece rápidamente</p>
+</section>
+<section id="game" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Game</h2>
+<p>El objeto principal de Phaser es un objeto JavaScript llamado <code class="sourceCode javascript">Game</code></p>
+<p>Dentro de un <em>juego</em> (<code class="sourceCode javascript">Game</code>) hay <em>escenas</em> (<code class="sourceCode javascript">Scene</code>), y dentro de
+<em>escenas</em>, <em>objetos</em> (<code class="sourceCode javascript">GameObject</code>), que son los que darán
+lógica y representación al juego</p>
+</section>
+<section id="escenas-en-phaser" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Escenas en Phaser</h2>
+<p>Las <code class="sourceCode javascript">Scene</code>s de Phaser son
+la unidad mínima que maneja el framework para crear una escena de
+juego</p>
+<p>Una <code class="sourceCode javascript">Scene</code> es un
+<em>objeto</em> JavaScript, con métodos y atributos (“propiedades”) para
+su gestión</p>
+<p>Phaser incluye un “scene manager” para gestionarlas</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Por ejemplo, puede haber una escena para:</p>
+<ul>
+<li>el menú principal</li>
+<li>cada uno de los niveles</li>
+<li>el inventario</li>
+</ul>
+<p>En teoría (aunque hay libertad), cada escena representa una lógica de
+interacción concreta</p>
+</section>
+<section id="puede-haber-varias-escenas-activas" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Puede haber varias escenas activas</h2>
+<p>Phaser permite varias escenas <em>activas</em> y superpuestas</p>
+<p>El orden de las escenas es importante, ya que el <em>scene
+manager</em> las actualiza y pinta en el orden en el que son
+añadidas</p>
+</section>
+<section id="métodos-básicos-de-una-escena" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Métodos básicos de una escena</h2>
+<p>El motor llama a estos métodos automáticamente:</p>
+<ul>
+<li><code class="sourceCode javascript">init</code>: se ejecuta cuando
+se carga la escena. Aquí se pueden pasar datos entre escenas.</li>
+<li><code class="sourceCode javascript">preload</code>: aquí hay que
+cargar los recursos antes de que sean usados.</li>
+<li><code class="sourceCode javascript">create</code>: una vez que la
+clase está instanciada y el motor está a punto, se llama a este método
+para inicializar.</li>
+<li><code class="sourceCode javascript"><span class="fu">update</span>(time<span class="op">,</span> delta)</code>:
+se llama cada ciclo de juego, para modificar el estado.</li>
+</ul>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Además, Phaser proporciona una serie de propiedades que podemos
+utilizar en nuestro juego. Mayoritariamente, estas propiedades son
+formas de acceder a los subsistemas de Phaser</p>
+</section>
+<section id="algunos-subsistemas" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Algunos subsistemas</h2>
+<p>Accesibles desde el objeto <code class="sourceCode javascript">Scene</code> con <code class="sourceCode javascript">scene<span class="op">.</span><span class="at">add</span></code>,
+<code class="sourceCode javascript">scene<span class="op">.</span><span class="at">load</span></code>…:</p>
+<ul>
+<li><code class="sourceCode javascript">add</code>: La factoría de
+GameObject</li>
+<li><code class="sourceCode javascript">cameras</code>: La cámara</li>
+<li><code class="sourceCode javascript">input</code>: La entrada de
+Phaser</li>
+<li><code class="sourceCode javascript">load</code>: el cargador de
+recursos</li>
+<li><code class="sourceCode javascript">sound</code>: el sistema de
+sonido</li>
+<li><code class="sourceCode javascript">scene</code>: el
+SceneManager</li>
+<li><code class="sourceCode javascript">time</code>: el manager de
+tiempo</li>
+<li><code class="sourceCode javascript">physics</code>: el sistema de
+físicas</li>
+</ul>
+</section>
+<section id="utilidades-matemáticas" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Utilidades matemáticas</h2>
+<p><a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Math"><code class="sourceCode javascript">Phaser<span class="op">.</span><span class="at">Math</span></code></a>
+contiene métodos que ayudan a realizar ciertas operaciones matemáticas
+típicas de un motor de videojuegos</p>
+<p>Además, tiene un <a href="https://newdocs.phaser.io/docs/3.55.2/Phaser.Math.RandomDataGenerator">generador
+de números aleatorios</a> muy útil, accesible a través de <code class="sourceCode javascript">Phaser<span class="op">.</span><span class="at">Math</span><span class="op">.</span><span class="at">RND</span></code></p>
+</section></section>
+<section style="top: 0px; display: block;" hidden="" aria-hidden="true" class="stack future">
+<section id="crear-un-juego-en-phaser" class="title-slide slide level1" style="top: 307.5px; display: block;">
+<h1>Crear un juego en Phaser</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Para crear un juego, hay que crear una instancia de <code class="sourceCode javascript">Phaser<span class="op">.</span><span class="at">Game</span></code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> Phaser<span class="op">.</span><span class="fu">Game</span>({</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> Phaser<span class="op">.</span><span class="at">AUTO</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">800</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scene</span><span class="op">:</span> [ClaseEscenaInicial<span class="op">,</span> ClaseEscenaNivel1]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>Esto crea un <code class="sourceCode html"><span class="kw">&lt;canvas&gt;</span></code> al
+final de la página</p>
+<p><small>En realidad, podemos crearlo <a href="https://codepen.io/gjimenezucm/pen/bGRPRYz">de una manera más
+sencilla</a></small></p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Si queremos usar nuestro propio <code class="sourceCode html"><span class="kw">&lt;canvas&gt;</span></code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;canvas</span> <span class="er">id</span><span class="ot">=</span><span class="st">"juego"</span><span class="kw">&gt;&lt;/canvas&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">new</span> Phaser<span class="op">.</span><span class="fu">Game</span>({</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">type</span><span class="op">:</span> Phaser<span class="op">.</span><span class="at">CANVAS</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">canvas</span><span class="op">:</span> <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">'juego'</span>)<span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">800</span><span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">400</span><span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scene</span><span class="op">:</span> [ClaseEscenaInicial<span class="op">,</span> ClaseEscenaNivel1]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Si queremos que el <code class="sourceCode html"><span class="kw">&lt;canvas&gt;</span></code>
+tenga el foco, lo hacemos con <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/focus"><code class="sourceCode javascript"><span class="fu">focus</span>()</code></a>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">&lt;script&gt;</span><span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">'juego'</span>)<span class="op">.</span><span class="fu">focus</span>()<span class="kw">&lt;/script&gt;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<!-- ## Ejemplo básico de un juego con Phaser
+
+
+<https://cleongh.github.io/phasertemplate/>
+
+<small>Código en <https://github.com/cleongh/phasertemplate></small>
+
+
+--- -->
+</section>
+<section id="un-juego-sencillo-y-explicado-con-phaser" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Un juego sencillo (y explicado) con Phaser</h2>
+<p><a href="https://gjimenezucm.github.io/simplephasergame/" class="uri">https://gjimenezucm.github.io/simplephasergame/</a></p>
+<p><small>Código en <a href="https://github.com/gjimenezUCM/simplephasergame" class="uri">https://github.com/gjimenezUCM/simplephasergame</a></small></p>
+</section>
+<section id="documentación" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Documentación</h2>
+<ul>
+<li><a href="https://photonstorm.github.io/phaser3-docs/index.html">Documentación
+de Phaser 3</a>: Acceder desde la barra de menú en la parte
+superior</li>
+<li><a href="https://newdocs.phaser.io/docs/3.55.2/">Nuevo sistema de
+documentación de Phaser</a>: Similar al anterior (en Beta)</li>
+<li><a href="https://phaser.io/examples/v3">Ejemplos de Phaser
+3</a></li>
+<li><a href="https://rexrainbow.github.io/phaser3-rex-notes/docs/site/index.html">Notes
+of Phaser 3</a></li>
+</ul>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="localización-de-los-recursos" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Localización de los recursos</h1>
+
+</section>
+<section id="phaser-y-urls" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Phaser y URLs</h2>
+<p>Por seguridad, los navegadores restringen mucho el acceso al
+disco</p>
+<p>Por tanto, todos los recursos (imágenes y demás) tienen que ser
+cargados a través de la red</p>
+<p>Para ello, tenemos que referencias los recursos con URLs</p>
+</section>
+<section id="urls" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>URLs</h2>
+<p>En Internet (y en más sitios), cada elemento tiene un identificador
+único</p>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Solemos referirnos a URLs (Uniform Resource Locator)</p>
+</section>
+<section id="urls-absolutas" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>URLs absolutas</h2>
+<ul>
+<li><code>http://www.ucm.es</code></li>
+<li><code>ftp://rediris.com/resourcea</code></li>
+<li><code>http://es.wikipedia.org/wiki</code></li>
+</ul>
+<p>La parte de antes de <code>:</code> es el <em>protocolo</em>
+(<code>http</code>, <code>ftp</code>…)</p>
+</section>
+<section id="urls-relativas" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>URLs relativas</h2>
+<p>En una web, <code>/</code> es la raíz del sitio</p>
+<p>El directorio especial <code>../</code> indica el directorio padre al
+del fichero actual.</p>
+<p>El directorio <code>./</code> indica el directorio del fichero
+actual</p>
+<ul>
+<li><code>./ejemplo/ruta</code></li>
+<li><code>../otro_hijo/ruta/musica.ogg</code></li>
+<li><code>/hijo_raiz_sitio/archivo.png</code></li>
+</ul>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Cuando servimos con <code>npx live-server</code>, se sirve <em>a
+partir del directorio en el que estamos, <strong>nunca rutas por
+encima</strong></em></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pwd</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/usuario/misarchivos</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd docs</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> npx live-server <span class="co"># `localhost` equivale a `docs/`</span></span></code></pre></div>
+<p>En el caso anterior, no puedo ir a una URL <code class="sourceCode javascript"><span class="st">'../anterior.png'</span></code>
+que esté en <code>misarchivos</code></p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="carga-de-recursos-en-memoria" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Carga de recursos en memoria</h1>
+
+</section>
+<section id="cargar" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Cargar</h2>
+<p>Se le añade una <em>key</em> (clave o nombre) al recurso para poder
+identificarlo</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// this es un objeto Scene</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">preload</span>() {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Para cargar desde el sitio de Phaser</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">load</span><span class="op">.</span><span class="fu">setBaseURL</span>(<span class="st">"https://examples.phaser.io/"</span>)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">load</span><span class="op">.</span><span class="fu">image</span>(<span class="st">'player'</span><span class="op">,</span> <span class="st">'assets/sprites/phaser-dude.png'</span>)<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">load</span><span class="op">.</span><span class="fu">image</span>(<span class="st">'platform'</span><span class="op">,</span> <span class="st">'assets/sprites/platform.png'</span>)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Podemos cargar diferentes recursos como: imágenes, archivos JSON,
+atlas de texturas, video, sonido, tilemaps…</p>
+<p>Las rutas son <em>relativas</em> al <code>index.html</code> (aunque
+se pueden modificar con los métodos <a href="https://newdocs.phaser.io/docs/3.55.1/Phaser.Loader.LoaderPlugin#setPath"><code>setPath</code></a>
+y <a href="https://newdocs.phaser.io/docs/3.55.1/Phaser.Loader.LoaderPlugin#setBaseURL"><code>setBaseUrl</code></a>
+del subsistema de carga de recursos)</p>
+</section>
+<section id="liberación-de-recursos" class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+<h2>Liberación de recursos</h2>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Si cambiamos de escena y la desactivamos, es muy probable que haya
+recursos que ya no utilizaremos nunca</p>
+<p>En este caso podemos eliminarlos de la <a href="https://newdocs.phaser.io/docs/3.55.1/Phaser.Game#cache">caché de
+<code>Game</code></a></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>image1<span class="op">.</span><span class="fu">destroy</span>()<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sound4<span class="op">.</span><span class="fu">destroy</span>()<span class="op">;</span></span></code></pre></div>
+<!-- Aqué el contexto es muy relevante puesto que no hemos explicado la caché
+Hay que indicar que `cache` es una propiedad del objeto juego. -->
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="sprites-en-phaser" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Sprites en Phaser</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Son las imágenes 2D que sirven para visualizar los objetos en un
+juego 2D. En Phaser se instancian así:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// this es una Scene</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>player <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">sprite</span>(<span class="dv">100</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="st">'player'</span>)<span class="op">;</span></span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="https://examples.phaser.io/assets/sprites/phaser-dude.png" style="width:10.0%" alt="player">
+<figcaption aria-hidden="true"><code class="sourceCode javascript">player</code></figcaption>
+</figure>
+<p>Hay que usar la clave que se le puso en la carga. El objeto,
+obviamente, <em>debe estar cargado memoria</em> con <code class="sourceCode javascript">scene<span class="op">.</span><span class="at">load</span></code></p>
+</section></section>
+<section style="top: 350px; display: none;" hidden="" aria-hidden="true" class="stack future">
+<section id="spritesheet-o-atlas-de-sprites" class="title-slide slide level1" style="top: 350px; display: none;">
+<h1>Spritesheet o atlas de sprites</h1>
+
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="mario_spritesheet.gif" width="400" height="300" alt="Spritesheet o atlas de Sprites">
+<figcaption aria-hidden="true">Spritesheet o atlas de
+Sprites</figcaption>
+</figure>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Sirven para optimizar recursos:</p>
+<ul>
+<li>Reduce el número de accesos al servidor (no es lo mismo traerse una
+imagen grande con muchas imágenes pequeñas que muchas imágenes pequeñas
+individuales)</li>
+<li>Es más eficiente en memoria</li>
+</ul>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<p>Sirve también para crear animaciones por frames</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// this es un objeto scene</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">preload</span>() {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Recordad: solo para cargar desde el sitio de Phaser</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">load</span><span class="op">.</span><span class="fu">setBaseURL</span>(<span class="st">"https://examples.phaser.io/"</span>)<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">load</span><span class="op">.</span><span class="fu">spritesheet</span>(<span class="st">'mummy_spritesheet'</span><span class="op">,</span> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                          <span class="st">'assets/sprites/metalslug_mummy37x45.png'</span><span class="op">,</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                          { <span class="dt">frameWidth</span><span class="op">:</span> <span class="dv">37</span><span class="op">,</span> <span class="dt">frameHeight</span><span class="op">:</span> <span class="dv">45</span><span class="op">,</span> <span class="dt">endFrame</span><span class="op">:</span> <span class="dv">17</span> })<span class="op">;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">create</span>() {</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mummy <span class="op">=</span> <span class="kw">this</span><span class="op">.</span><span class="at">add</span><span class="op">.</span><span class="fu">sprite</span>(<span class="dv">300</span><span class="op">,</span> <span class="dv">200</span><span class="op">,</span> <span class="st">'mummy_spritesheet'</span>)<span class="op">;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">this</span><span class="op">.</span><span class="at">anims</span><span class="op">.</span><span class="fu">create</span>({</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">key</span><span class="op">:</span> <span class="st">'walking'</span><span class="op">,</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">frames</span><span class="op">:</span> <span class="kw">this</span><span class="op">.</span><span class="at">anims</span><span class="op">.</span><span class="fu">generateFrameNumbers</span>(<span class="st">'mummy_spritesheet'</span><span class="op">,</span> { <span class="dt">start</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span> <span class="dt">end</span><span class="op">:</span> <span class="dv">16</span> })<span class="op">,</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">frameRate</span><span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">repeat</span><span class="op">:</span> <span class="op">-</span><span class="dv">1</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    mummy<span class="op">.</span><span class="fu">play</span>(<span class="st">'walking'</span>)<span class="op">;</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</section>
+<section class="slide level2 future" aria-hidden="true" style="top: 350px; display: none;">
+
+<figure>
+<img data-src="mummy.gif" alt="Animation">
+<figcaption aria-hidden="true">Animation</figcaption>
+</figure>
+</section></section>
+    </div>
+  <div class="backgrounds"><div class="slide-background present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: block;" data-loaded="true"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: block;" data-loaded="true"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div><div class="slide-background stack future" style="display: none;"><div class="slide-background-content"></div><div class="slide-background title-slide slide level1 present" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div><div class="slide-background slide level2 future" style="display: none;"><div class="slide-background-content"></div></div></div></div><div class="slide-number" style="display: block;"><a href="#/title-slide">
+					<span class="slide-number-a">1</span>
+					</a></div><aside class="controls" style="display: block;" data-controls-layout="bottom-right" data-controls-back-arrows="faded"><button class="navigate-left" aria-label="previous slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-right highlight enabled" aria-label="next slide"><div class="controls-arrow"></div></button>
+			<button class="navigate-up" aria-label="above slide" disabled="disabled"><div class="controls-arrow"></div></button>
+			<button class="navigate-down" aria-label="below slide" disabled="disabled"><div class="controls-arrow"></div></button></aside><div class="progress" style="display: block;"><span style="transform: scaleX(0);"></span></div><div class="speaker-notes" data-prevent-swipe="" tabindex="0"></div><div class="pause-overlay"><button class="resume-button">Resume presentation</button></div><div style="position: absolute; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px);" class="aria-status" aria-live="polite" aria-atomic="true">Introducción a Phaser </div></div>
+
+  <script src="Introducci%C3%B3n%20a%20Phaser_files/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="Introducci%C3%B3n%20a%20Phaser_files/notes.js"></script>
+  <script src="Introducci%C3%B3n%20a%20Phaser_files/search.js"></script>
+  <script src="Introducci%C3%B3n%20a%20Phaser_files/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: true,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'slide',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+
+</body></html>
