@@ -1,4 +1,3 @@
-import MainMenu from "./MainMenu.js"; 
 import PlayScene from "./playScene.js";
 window.onload = ()=>{
 
@@ -12,13 +11,13 @@ window.onload = ()=>{
         },
         pixelArt: true,
         physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 480 },
+            default: 'matter',
+            matter: {
+                gravity: { y: 0 },
                 debug: true
             }
         },
-        scene: [MainMenu, PlayScene]
+        scene: [PlayScene]
     };
     new Phaser.Game(config);
 };
