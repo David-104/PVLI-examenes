@@ -1,3 +1,6 @@
+import Boot from "./boot.js";
+import Menu from "./menu.js";
+import PlayScene from "./playScene.js";
 let config = {
 	type: Phaser.AUTO,
 	parent: 'juego',
@@ -22,6 +25,7 @@ let config = {
 			right: true
 		}
 	},
+	scene: [ Boot, Menu, PlayScene ],
 	title: "PVLI Ordinaria 23/24",
 	version: "1.0.0",
 	transparent: false

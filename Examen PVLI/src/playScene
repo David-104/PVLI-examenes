@@ -1,0 +1,10 @@
+export default class PlayScene extends Phaser.Scene {
+    constructor(){
+        super({key: 'play'});
+    }
+
+    init(params){
+        //console.log(params) //para pasar parametros de una escena a otra se meten en un objeto
+        this.fuelNum = params.fuelNum;
+        this.spawnTime = params.spawnTime;
+    }
